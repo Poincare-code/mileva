@@ -13,7 +13,7 @@ Mostly just sympy wrappers, tailored to my personal needs.
 Installation
 ************
 
-Get the latest release (version 0.0.1) either from `PyPI <https://pypi.org/project/pomme/>`_, using pip, with:
+Get the latest release (version 0.0.2) either from `PyPI <https://pypi.org/project/pomme/>`_, using pip, with:
 
 .. code-block:: shell
 

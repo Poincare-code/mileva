@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mileva"
-version = "0.0.1"
+version = "0.0.2"
 description = "Python toolkit for symbolic calculations in general relativity."
 readme = "README.md"
 authors = [
@@ -43,7 +43,7 @@ dev = ["black", "bumpver", "pip-tools", "pytest"]
 Homepage = "https://github.com/Poincare-code/albert"
 
 [tool.bumpver]
-current_version = "0.0.1"
+current_version = "0.0.2"
 version_pattern = "MAJOR.MINOR.PATCH"
 commit_message  = "Bump version {old_version} -> {new_version}"
 commit          = true
