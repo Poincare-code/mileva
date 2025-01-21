@@ -56,9 +56,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install pytest>=7
-      - name: Install pomme from PyPI
+      - name: Install from PyPI
         run: |
-          pip install pomme
+          pip install mileva
       - name: Test with pytest
         run: |
           pytest

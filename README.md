@@ -1,5 +1,9 @@
 # mileva
----
-Python toolkit for symbolic calculations in general relativity.
 
-Mostly just wrappers around Sympy, tailored to my personal needs.
+Python toolkit for symbolic computations in general relativity.
+
+Mostly just sympy wrappers, tailored to my personal needs.
+
+
+## Installation
+

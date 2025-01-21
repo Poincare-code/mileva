@@ -1,0 +1,32 @@
+package:
+  name: mileva
+  version: "0.0.1"
+
+about:
+  home: "https://github.com/Poincare-code/mileva"
+  license: GPLv3
+  license_file: LICENSE
+  summary: Python toolkit for symbolic computations in general relativity.
+
+requirements:
+  build:
+    - python={{ python_version }}
+    - setuptools
+    - wheel
+    - pip
+
+  run:
+    - python={{ python_version }}
+    - matplotlib
+    - astroquery
+    - radio-beam
+    - ipywidgets
+    - pytorch>=2.0.0
+    - astropy
+    - numpy
+    - numba
+    - tqdm
+    - h5py
+
+source:
+  path: ../
