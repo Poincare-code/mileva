@@ -55,8 +55,9 @@ push            = false
 "src/mileva/__init__.py" = ["{version}"]
 "conda/meta.yaml" = ['version: "{version}"']
 "README.md" = ['(version {version})']
-#"docs/src/index.rst" = ['(version {version})']
+"docs/src/index.rst" = ['(version {version})']
 
 [tool.pytest.ini_options]
-addopts   = ["--import-mode=importlib"]
-testpaths = ["tests"]
+addopts    = ["--import-mode=importlib"]
+testpaths  = ["tests"]
+pythonpath = [".", "src", "src/mileva"]

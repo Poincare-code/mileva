@@ -1,6 +1,6 @@
 # mileva
 
-_Python toolkit for symbolic computations in general relativity._
+_Python toolkit for symbolic computations in General Relativity._
 
 ![Build status](https://github.com/Poincare-code/mileva/actions/workflows/build-and-test.yaml/badge.svg)
 ![Build status](https://github.com/Poincare-code/mileva/actions/workflows/upload-to-pypi.yaml/badge.svg)
