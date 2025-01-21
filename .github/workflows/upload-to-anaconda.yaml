@@ -1,0 +1,92 @@
+name: Upload to Anaconda.org
+
+on:
+  release:
+    types: [published]
+    
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: publish-to-conda
+      uses: maxibor/conda-package-publish-action@v1.1
+      with:
+        subDir: 'conda'
+        AnacondaToken: ${{ secrets.ANACONDA_TOKEN }}
+        
+  build:
+    needs: deploy
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ["3.8", "3.9", "3.10"]
+        
+    # Do not ignore bash profile files. From:
+    # https://github.com/marketplace/actions/setup-miniconda
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+      - uses: actions/checkout@v3
+
+
+      - name: Conda setup (try 1)
+        id: setup_try1
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          miniforge-variant: Mambaforge
+          mamba-version: "*"
+          channels: conda-forge, defaults
+          python-version: ${{ matrix.python-version }}
+      
+      - name: Conda setup (try 2)
+        id: setup_try2
+        if: steps.setup_try1.outcome == 'failure'
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          miniforge-variant: Mambaforge
+          mamba-version: "*"
+          channels: conda-forge, defaults
+          python-version: ${{ matrix.python-version }}
+      
+      - name: Conda setup (try 3)
+        id: setup_try3
+        if: steps.setup_try2.outcome == 'failure'
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          miniforge-variant: Mambaforge
+          mamba-version: "*"
+          channels: conda-forge, defaults
+          python-version: ${{ matrix.python-version }}
+
+
+      - name: Install dependencies and albert (try 1)
+        id: install_try1
+        run: |
+          sleep 5
+          mamba install pytest>=7
+          mamba install -c freddeceuster albert
+
+      - name: Install dependencies and albert (try 2)
+        id: install_try2
+        if: steps.install_try1.outcome == 'failure'
+        run: |
+          sleep 5
+          mamba install pytest>=7
+          mamba install -c freddeceuster albert
+
+      - name: Install dependencies and albert (try 3)
+        id: install_try3
+        if: steps.install_try2.outcome == 'failure'
+        run: |
+          sleep 5
+          mamba install pytest>=7
+          mamba install -c freddeceuster albert
+    
+    
+      - name: Test with pytest
+        run: |
+          pytest
