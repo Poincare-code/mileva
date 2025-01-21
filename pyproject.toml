@@ -34,7 +34,7 @@ requires-python = ">=3.7"
 
 [tool.setuptools.packages.find]
 where = [".", "src", "src/mileva", "src/mileva/geometry"]
-include = ["mileva"]
+include = ["mileva", "geometry"]
 
 [project.optional-dependencies]
 dev = ["black", "bumpver", "pip-tools", "pytest"]
@@ -53,8 +53,8 @@ push            = false
 [tool.bumpver.file_patterns]
 "pyproject.toml" = ['current_version = "{version}"', 'version = "{version}"']
 "src/mileva/__init__.py" = ["{version}"]
-#"conda/meta.yaml" = ['version: "{version}"']
-#"README.md" = ['(version {version})']
+"conda/meta.yaml" = ['version: "{version}"']
+"README.md" = ['(version {version})']
 #"docs/src/index.rst" = ['(version {version})']
 
 [tool.pytest.ini_options]
