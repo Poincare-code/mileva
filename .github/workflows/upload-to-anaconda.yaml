@@ -32,10 +32,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-
       - name: Conda setup (try 1)
         id: setup_try1
-        uses: conda-incubator/setup-miniconda@v2
+        uses: conda-incubator/setup-miniconda@v3
         with:
           miniforge-variant: Mambaforge
           mamba-version: "*"
@@ -45,7 +44,7 @@ jobs:
       - name: Conda setup (try 2)
         id: setup_try2
         if: steps.setup_try1.outcome == 'failure'
-        uses: conda-incubator/setup-miniconda@v2
+        uses: conda-incubator/setup-miniconda@v3
         with:
           miniforge-variant: Mambaforge
           mamba-version: "*"
@@ -55,7 +54,7 @@ jobs:
       - name: Conda setup (try 3)
         id: setup_try3
         if: steps.setup_try2.outcome == 'failure'
-        uses: conda-incubator/setup-miniconda@v2
+        uses: conda-incubator/setup-miniconda@v3
         with:
           miniforge-variant: Mambaforge
           mamba-version: "*"
@@ -63,28 +62,28 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
 
-      - name: Install dependencies and albert (try 1)
+      - name: Install dependencies and mileva (try 1)
         id: install_try1
         run: |
           sleep 5
           mamba install pytest>=7
-          mamba install -c freddeceuster albert
+          mamba install -c freddeceuster mileva
 
-      - name: Install dependencies and albert (try 2)
+      - name: Install dependencies and mileva (try 2)
         id: install_try2
         if: steps.install_try1.outcome == 'failure'
         run: |
           sleep 5
           mamba install pytest>=7
-          mamba install -c freddeceuster albert
+          mamba install -c freddeceuster mileva
 
-      - name: Install dependencies and albert (try 3)
+      - name: Install dependencies and mileva (try 3)
         id: install_try3
         if: steps.install_try2.outcome == 'failure'
         run: |
           sleep 5
           mamba install pytest>=7
-          mamba install -c freddeceuster albert
+          mamba install -c freddeceuster mileva
     
     
       - name: Test with pytest
